@@ -1,0 +1,84 @@
+project_name: ky2xd_phase1
+unit: meter
+random_seed: 20260701
+output_root: outputs
+
+coordinate_definition:
+  tunnel_axis: X
+  lateral_axis: Y
+  vertical_axis: Z
+  advance_positive: true
+
+cycles:
+  - id: C01
+    name: DYK980+904.0
+    pointcloud: /Volumes/HP P900/实验数据/整理输出/爆破数据_分类整理/05_其他文件/ky2xd/DYK980+904.0/DYK980+904.0.laz
+    e57_archive: /Volumes/HP P900/实验数据/整理输出/爆破数据_分类整理/05_其他文件/ky2xd/DYK980+904.0/DYK980+904.0.e57
+    image_dir: /Volumes/HP P900/实验数据/整理输出/爆破数据_分类整理/01_图片数据/康玉隧道2#斜井右线大里程光面爆破数据采集/DYK980+904.0
+    distance_from_previous_m: 0.0
+    face_roi:
+      method: full_cloud
+    stable_roi:
+      method: none
+    vertical_hint:
+      method: axis
+      axis: [0.0, 0.0, 1.0]
+    advance_direction:
+      method: plane_normal
+      sign: 1
+
+  - id: C02
+    name: DYK980+909.2
+    pointcloud: /Volumes/HP P900/实验数据/整理输出/爆破数据_分类整理/05_其他文件/ky2xd/DYK980+909.2/DYK980+909.2.laz
+    e57_archive: /Volumes/HP P900/实验数据/整理输出/爆破数据_分类整理/05_其他文件/ky2xd/DYK980+909.2/DYK980+909.2.e57
+    image_dir: /Volumes/HP P900/实验数据/整理输出/爆破数据_分类整理/01_图片数据/康玉隧道2#斜井右线大里程光面爆破数据采集/DYK980+909.2
+    distance_from_previous_m: 5.2
+    face_roi:
+      method: full_cloud
+    stable_roi:
+      method: none
+    vertical_hint:
+      method: axis
+      axis: [0.0, 0.0, 1.0]
+    advance_direction:
+      method: plane_normal
+      sign: 1
+
+processing:
+  remove_statistical_outliers: false
+  voxel_downsample_for_analysis: true
+  voxel_size_m: auto
+  max_analysis_points: 200000
+
+  quality:
+    sample_size: 50000
+    duplicate_round_decimals: 6
+    local_density_radius_factor: 6.0
+
+  face_plane:
+    method: ransac
+    distance_threshold_factor: 2.5
+    ransac_n: 3
+    num_iterations: 3000
+    max_points: 100000
+
+  frame:
+    center_method: projected_robust_centroid
+    enforce_orthogonal_axes: true
+    manual_center: null
+
+  features:
+    enabled: true
+    sample_size: 120000
+    radii_from_nn_median: [3.0, 6.0, 12.0]
+
+  projection:
+    pixel_size_m: auto
+    min_pixel_size_m: 0.005
+    max_image_size: 2048
+
+  refinement:
+    enabled: false
+    lock_axial_distance: true
+    maximum_axial_adjustment_m: 0.02
+    maximum_rotation_deg: 2.0

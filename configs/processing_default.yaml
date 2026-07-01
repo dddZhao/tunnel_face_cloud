@@ -1,0 +1,36 @@
+remove_statistical_outliers: false
+voxel_downsample_for_analysis: true
+voxel_size_m: auto
+max_analysis_points: 200000
+
+quality:
+  sample_size: 50000
+  duplicate_round_decimals: 6
+  local_density_radius_factor: 6.0
+
+face_plane:
+  method: ransac
+  distance_threshold_factor: 2.5
+  ransac_n: 3
+  num_iterations: 5000
+  max_points: 100000
+
+frame:
+  center_method: projected_robust_centroid
+  enforce_orthogonal_axes: true
+
+features:
+  enabled: true
+  sample_size: 120000
+  radii_from_nn_median: [3.0, 6.0, 12.0]
+
+projection:
+  pixel_size_m: auto
+  min_pixel_size_m: 0.005
+  max_image_size: 2048
+
+refinement:
+  enabled: false
+  lock_axial_distance: true
+  maximum_axial_adjustment_m: 0.02
+  maximum_rotation_deg: 2.0
